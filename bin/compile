@@ -1,0 +1,28 @@
+#!/bin/sh
+
+indent() {
+  sed -u 's/^/       /'
+}
+
+echo "-----> Install ffmpeg and lame"
+BUILD_DIR=$1
+VENDOR_DIR="vendor"
+LAME_DIR=$(pwd)/lame
+FFMPEG_DIR=$(pwd)/ffmpeg
+
+echo "DOWNLOAD_URL = " $DOWNLOAD_URL | indent
+
+cd $BUILD_DIR
+mkdir -p $VENDOR_DIR
+cd $VENDOR_DIR
+
+# copy ffmpeg to vendor dir
+cp -r $FFMPEG_DIR .
+# copy lame to vendor dir
+cp -r $LAME_DIR .
+
+echo "exporting PATH and LIBRARY_PATH" | indent
+PROFILE_PATH="$BUILD_DIR/.profile.d/ffmpeg.sh"
+mkdir -p $(dirname $PROFILE_PATH)
+echo 'export PATH="$PATH:$HOME/vendor/ffmpeg/bin:$HOME/vendor/lame/bin"' >> $PROFILE_PATH
+echo 'export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$HOME/vendor/ffmpeg/lib:$HOME/vendor/lame/lib"' >> $PROFILE_PATH
