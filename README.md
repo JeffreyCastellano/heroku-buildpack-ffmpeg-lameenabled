@@ -13,7 +13,7 @@ To use this buildpack, you should prepare .buildpacks file that contains this bu
     ...
     
     $ cat .buildpacks
-    https://github.com/ManicCharm/heroku-buildpack-ffmpeg-lameenabled
+    https://github.com/JeffreyCastellano/heroku-buildpack-ffmpeg-lameenabled
     https://github.com/heroku/heroku-buildpack-play
 
     $ heroku create --buildpack https://github.com/ddollar/heroku-buildpack-multi
